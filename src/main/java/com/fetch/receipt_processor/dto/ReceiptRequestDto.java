@@ -3,6 +3,8 @@ package com.fetch.receipt_processor.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.DateSerializer;
+import com.fetch.receipt_processor.serializers.DateDeSerializer;
 import com.fetch.receipt_processor.serializers.LocalTimeDeserializer;
 import com.fetch.receipt_processor.serializers.LocalTimeSerializer;
 import lombok.AllArgsConstructor;
@@ -24,7 +26,7 @@ public class ReceiptRequestDto implements Serializable {
 
     private String retailer;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonDeserialize(using = DateDeSerializer.class)
     private Date purchaseDate;
 
     @JsonDeserialize(using = LocalTimeDeserializer.class)

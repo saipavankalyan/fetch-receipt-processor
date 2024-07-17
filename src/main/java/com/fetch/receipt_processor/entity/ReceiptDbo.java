@@ -33,7 +33,7 @@ public class ReceiptDbo {
     private LocalTime purchaseTime;
     private BigDecimal total;
 
-    @OneToMany(targetEntity = ItemDbo.class, cascade = CascadeType.ALL, mappedBy = "receiptId")
+    @OneToMany(targetEntity = ItemDbo.class, cascade = CascadeType.ALL, mappedBy = "receipt")
     private List<ItemDbo> items;
 
 }

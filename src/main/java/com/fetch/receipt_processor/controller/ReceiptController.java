@@ -1,7 +1,9 @@
 package com.fetch.receipt_processor.controller;
 
+import com.fetch.receipt_processor.dto.ReceiptPointsDto;
 import com.fetch.receipt_processor.dto.ReceiptProcessResponseDto;
 import com.fetch.receipt_processor.dto.ReceiptRequestDto;
+import com.fetch.receipt_processor.exception.ReceiptNotFoundException;
 import com.fetch.receipt_processor.service.ReceiptService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,6 +24,12 @@ public class ReceiptController {
     public ReceiptProcessResponseDto processReceipt(@RequestBody ReceiptRequestDto request) {
         UUID uuid = receiptService.addReceipt(request);
         return ReceiptProcessResponseDto.builder().id(uuid.toString()).build();
+    }
+
+    @GetMapping("/{receiptId}/points")
+    public ReceiptPointsDto getPoints(@PathVariable("receiptId") UUID receiptId) throws ReceiptNotFoundException {
+        Integer points = receiptService.calculatePoints(receiptId);
+        return ReceiptPointsDto.builder().points(points).build();
     }
 
 }

@@ -6,10 +6,11 @@ import com.fetch.receipt_processor.entity.ItemDbo;
 import com.fetch.receipt_processor.entity.ReceiptDbo;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingConstants;
 
 import java.util.List;
 
-@Mapper(injectionStrategy = InjectionStrategy.CONSTRUCTOR, componentModel = "spring")
+@Mapper(injectionStrategy = InjectionStrategy.CONSTRUCTOR, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface ReceiptMapper {
 
     ReceiptDbo map(ReceiptRequestDto request);

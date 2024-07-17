@@ -22,8 +22,9 @@ public class ItemDbo {
     @Id
     private UUID id;
 
-    @Column(name = "RECEIPT_ID")
-    private UUID receiptId;
+    @ManyToOne(targetEntity = ReceiptDbo.class)
+    @JoinColumn(name = "RECEIPT_ID")
+    private ReceiptDbo receipt;
 
     @Column(name = "SHORT_DESCRIPTION")
     private String shortDescription;
